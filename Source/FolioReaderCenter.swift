@@ -53,7 +53,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     let collectionViewLayout = UICollectionViewFlowLayout()
     var loadingView: UIActivityIndicatorView!
     var pages: [String]!
-    var totalPages: Int = 0
+    open var totalPages: Int = 0
     var tempFragment: String?
     var animator: ZFModalTransitionAnimator!
     var pageIndicatorView: FolioReaderPageIndicator?
