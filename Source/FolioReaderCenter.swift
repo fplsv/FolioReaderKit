@@ -53,7 +53,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     let collectionViewLayout = UICollectionViewFlowLayout()
     var loadingView: UIActivityIndicatorView!
     var pages: [String]!
-    open var totalPages: Int = 0
+    var totalPages: Int = 0
     var tempFragment: String?
     var animator: ZFModalTransitionAnimator!
     var pageIndicatorView: FolioReaderPageIndicator?
@@ -836,6 +836,15 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         completion?()
+    }
+    
+    public func getTotalPages() -> Int {
+        if let total = self.pageIndicatorView?.totalPages {
+            return total
+        }
+        else {
+            return 0
+        }
     }
 
     public func getCurrentPageItemNumber() -> Int {
