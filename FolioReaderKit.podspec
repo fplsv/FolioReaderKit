@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "FolioReaderKit"
-  s.version          = "1.4.0"
+  s.version          = "1.4.1"
   s.summary          = "A Swift ePub reader and parser framework for iOS."
   s.description  = <<-DESC
                    Written in Swift.
@@ -13,8 +13,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/FolioReader/FolioReaderKit.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/hebertialmeida'
 
-  s.swift_version = '4.2'
-  s.platform      = :ios, '9.0'
+  s.swift_version = '5.1'
+  s.platform      = :ios, '9.3'
   s.requires_arc  = true
 
   s.source_files = [
