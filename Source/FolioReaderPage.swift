@@ -299,9 +299,9 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
         } else if scheme == "mailto" {
             print("Email")
             return true
-        } else if url.absoluteString == "freshink://close" && navigationType == .linkClicked {
+        } else if url.absoluteString == "folioreader://close" && navigationType == .linkClicked {
             folioReader.readerCenter?.dismiss()
-            folioReader.close()
+            folioReader.closeViaInBookLink()
             return false
         } else if url.absoluteString != "about:blank" && scheme.contains("http") && navigationType == .linkClicked {
             let safariVC = SFSafariViewController(url: request.url!)
