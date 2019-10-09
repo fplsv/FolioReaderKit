@@ -11,6 +11,7 @@ import UIKit
 class FolioReaderPageIndicator: UIView {
     var pagesLabel: UILabel!
     var minutesLabel: UILabel!
+    var closeLabel: UILabel!
     var totalMinutes: Int!
     var totalPages: Int!
     var currentPage: Int = 1 {
@@ -46,6 +47,19 @@ class FolioReaderPageIndicator: UIView {
         minutesLabel.textAlignment = NSTextAlignment.right
         //        minutesLabel.alpha = 0
         addSubview(minutesLabel)
+        
+        closeLabel = UILabel(frame: CGRect.zero)
+        closeLabel.font = UIFont(name: "Avenir-Light", size: 10)!
+        closeLabel.textAlignment = NSTextAlignment.right
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeReader))
+        closeLabel.isUserInteractionEnabled = true
+        closeLabel.addGestureRecognizer(tap)
+        addSubview(closeLabel)
+    }
+    
+    @objc func closeReader() {
+        folioReader.readerCenter?.dismiss()
+        folioReader.close()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -55,10 +69,12 @@ class FolioReaderPageIndicator: UIView {
     func reloadView(updateShadow: Bool) {
         minutesLabel.sizeToFit()
         pagesLabel.sizeToFit()
+        closeLabel.sizeToFit()
 
-        let fullW = pagesLabel.frame.width + minutesLabel.frame.width
+        let fullW = pagesLabel.frame.width + minutesLabel.frame.width + closeLabel.frame.width
         minutesLabel.frame.origin = CGPoint(x: frame.width/2-fullW/2, y: 2)
         pagesLabel.frame.origin = CGPoint(x: minutesLabel.frame.origin.x+minutesLabel.frame.width, y: 2)
+        closeLabel.frame.origin = CGPoint(x: pagesLabel.frame.origin.x+pagesLabel.frame.width, y: 2)
         
         if updateShadow {
             layer.shadowPath = UIBezierPath(rect: bounds).cgPath
@@ -84,6 +100,7 @@ class FolioReaderPageIndicator: UIView {
 
         minutesLabel.textColor = self.folioReader.isNight(UIColor(white: 1, alpha: 0.3), UIColor(white: 0, alpha: 0.6))
         pagesLabel.textColor = self.folioReader.isNight(UIColor(white: 1, alpha: 0.6), UIColor(white: 0, alpha: 0.9))
+        closeLabel.textColor = self.folioReader.isNight(UIColor(white: 1, alpha: 0.3), UIColor(white: 0, alpha: 0.6))
     }
 
     fileprivate func reloadViewWithPage(_ page: Int) {
@@ -103,6 +120,12 @@ class FolioReaderPageIndicator: UIView {
         } else {
             minutesLabel.text = self.readerConfig.localizedReaderLessThanOneMinute+" ·"
         }
+        
+        let text = " · close story"
+        let textRange = NSMakeRange(3, text.count - 3)
+        let attributedText = NSMutableAttributedString(string: text)
+        attributedText.addAttribute(NSAttributedString.Key.underlineStyle , value: NSUnderlineStyle.single.rawValue, range: textRange)
+        closeLabel.attributedText = attributedText
         
         reloadView(updateShadow: false)
     }

@@ -294,11 +294,15 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
                 handleAnchor(anchorFromURL!, avoidBeginningAnchors: false, animated: true)
                 return false
             }
-
+            
             return true
         } else if scheme == "mailto" {
             print("Email")
             return true
+        } else if url.absoluteString == "freshink://close" && navigationType == .linkClicked {
+            folioReader.readerCenter?.dismiss()
+            folioReader.close()
+            return false
         } else if url.absoluteString != "about:blank" && scheme.contains("http") && navigationType == .linkClicked {
             let safariVC = SFSafariViewController(url: request.url!)
             safariVC.view.tintColor = self.readerConfig.tintColor

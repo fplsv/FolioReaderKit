@@ -106,7 +106,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     required public init?(coder aDecoder: NSCoder) {
         fatalError("This class doesn't support NSCoding.")
     }
-
+ 
     /**
      Common Initialization
      */

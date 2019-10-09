@@ -354,6 +354,7 @@ extension FolioReader {
     }
 
     /// Closes and save the reader current instance.
+    @objc
     open func close() {
         self.saveReaderState()
         self.isReaderOpen = false
