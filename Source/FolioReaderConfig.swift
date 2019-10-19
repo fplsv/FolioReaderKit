@@ -96,9 +96,12 @@ open class FolioReaderConfig: NSObject {
     open var classBasedOnClickListeners = [ClassBasedOnClickListener]()
 
     // MARK: Colors
-
+    
     /// Base header custom TintColor
     open var tintColor = UIColor(rgba: "#6ACC50")
+    
+    /// Scroll grab color
+    open var scrollColor = UIColor(rgba: "#6ACC50")
 
     /// Menu background color
     open var menuBackgroundColor = UIColor.white
