@@ -135,7 +135,7 @@ open class FolioReaderContainer: UIViewController {
             self.centerNavigationController = UINavigationController(rootViewController: rootViewController)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             self.centerNavigationController?.setNavigationBarHidden(self.readerConfig.shouldHideNavigationOnTap, animated: true)
         }
         

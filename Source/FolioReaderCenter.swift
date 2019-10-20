@@ -1258,6 +1258,10 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
                 self.delegate?.pageItemChanged?(webViewPage)
             }
         }
+        
+        if (self.pageScrollDirection == .up) {
+            self.showBars()
+        }
 
         self.updatePageScrollDirection(inScrollView: scrollView, forScrollType: scrollType)
     }
