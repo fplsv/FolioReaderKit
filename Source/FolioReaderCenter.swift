@@ -1259,7 +1259,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
             }
         }
         
-        if (self.pageScrollDirection == .up) {
+        if (self.pageScrollDirection == .down) {
             self.showBars()
         }
 
