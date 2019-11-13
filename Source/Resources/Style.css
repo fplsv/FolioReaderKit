@@ -154,6 +154,13 @@ ruby > rt, ruby > rp { -webkit-user-select: none; }
  *
  */
 
+/* Restore highlighting from older epubs where it's disabled */
+section.level1 * {
+  -webkit-touch-callout: default!important;
+  -webkit-user-select: default!important;
+  -webkit-tap-highlight-color: auto!important;
+}
+
 highlight {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
