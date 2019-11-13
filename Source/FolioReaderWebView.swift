@@ -303,7 +303,7 @@ open class FolioReaderWebView: UIWebView {
 
         // menu on existing highlight
         if isShare {
-            menuItems = [colorsItem, editNoteItem, removeItem]
+            menuItems = [editNoteItem, removeItem]
             
             if (self.readerConfig.allowSharing == true) {
                 menuItems.append(shareItem)
@@ -315,7 +315,7 @@ open class FolioReaderWebView: UIWebView {
             menuItems = [yellowItem, greenItem, pinkItem]
         } else {
             // default menu
-            menuItems = [highlightItem, highlightNoteItem]
+            menuItems = [highlightNoteItem]
 
             if self.book.hasAudio || self.readerConfig.enableTTS {
                 menuItems.insert(playAudioItem, at: 0)
