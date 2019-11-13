@@ -270,8 +270,8 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         let menu = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action:#selector(closeReader(_:)))
         let toc = UIBarButtonItem(image: tocIcon, style: .plain, target: self, action:#selector(presentChapterList(_:)))
 
-        //navigationItem.leftBarButtonItems = [menu]//, toc]
-        navigationItem.leftBarButtonItems = [menu, toc]
+        navigationItem.leftBarButtonItems = [menu]
+        //navigationItem.leftBarButtonItems = [menu, toc]
 
         var rightBarIcons = [UIBarButtonItem]()
 
