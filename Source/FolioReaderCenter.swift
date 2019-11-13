@@ -1345,13 +1345,14 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     @objc func presentChapterList(_ sender: UIBarButtonItem) {
         folioReader.saveReaderState()
 
-        let chapter = FolioReaderChapterList(folioReader: folioReader, readerConfig: readerConfig, book: book, delegate: self)
+        //let chapter = FolioReaderChapterList(folioReader: folioReader, readerConfig: readerConfig, book: book, delegate: self)
         let highlight = FolioReaderHighlightList(folioReader: folioReader, readerConfig: readerConfig)
         let pageController = PageViewController(folioReader: folioReader, readerConfig: readerConfig)
 
-        pageController.viewControllerOne = chapter
-        pageController.viewControllerTwo = highlight
-        pageController.segmentedControlItems = [readerConfig.localizedContentsTitle, readerConfig.localizedHighlightsTitle]
+        //pageController.viewControllerOne = chapter
+        //pageController.viewControllerTwo = highlight
+        pageController.viewControllerOne = highlight
+        pageController.segmentedControlItems = [readerConfig.localizedHighlightsTitle]
 
         let nav = UINavigationController(rootViewController: pageController)
         present(nav, animated: true, completion: nil)
