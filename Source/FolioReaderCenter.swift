@@ -1213,7 +1213,7 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         }
 
         if let currentPage = currentPage {
-            currentPage.webView?.createMenu(options: true)
+            currentPage.webView?.createMenu(options: false)
             currentPage.webView?.setMenuVisible(false)
         }
 
