@@ -201,7 +201,7 @@ extension FolioReaderAddHighlightNote: UITextViewDelegate {
         textView.frame.size.height = textView.frame.height + 30
 
         if resizedTextView {
-            scrollView.scrollRectToVisible(textView.frame, animated: true)
+            //scrollView.scrollRectToVisible(textView.frame, animated: true)
         }
         else{
             resizedTextView = true
