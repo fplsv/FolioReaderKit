@@ -188,7 +188,7 @@ class FolioReaderAddHighlightNote: UIViewController {
 // MARK: - UITextViewDelegate
 extension FolioReaderAddHighlightNote: UITextViewDelegate {
     
-    func textViewDidChange(_ textView: UITextView) {
+    /*func textViewDidChange(_ textView: UITextView) {
         let fixedWidth = textView.frame.size.width
         textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -208,5 +208,5 @@ extension FolioReaderAddHighlightNote: UITextViewDelegate {
         }
         
         return true
-    }
+    }*/
 }

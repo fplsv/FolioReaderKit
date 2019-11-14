@@ -17,6 +17,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 //    }
 });
 
+document.addEventListener("selectionchange", function(){
+    // Clear current highlight
+    if (window.getSelection().toString().length > 0)
+        thisHighlight = null;
+}, false);
+
 // Generate a GUID
 function guid() {
     function s4() {
@@ -127,6 +133,10 @@ function highlightStringWithNote(style) {
 
 function getHighlightId() {
     return thisHighlight.id;
+}
+
+function clearHighlightId() {
+    thisHighlight = null;
 }
 
 // Menu colors

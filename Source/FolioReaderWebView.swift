@@ -128,6 +128,7 @@ open class FolioReaderWebView: UIWebView {
             Highlight.removeById(withConfiguration: self.readerConfig, highlightId: removedId)
         }
         setMenuVisible(false)
+        createMenu(options: false)
     }
 
     @objc func highlight(_ sender: UIMenuController?) {
@@ -193,7 +194,10 @@ open class FolioReaderWebView: UIWebView {
     }
     
     @objc func updateHighlightNote (_ sender: UIMenuController?) {
-        guard let highlightId = js("getHighlightId()") else { return }
+        guard let highlightId = js("getHighlightId()") else {
+            highlightWithNote(sender)
+            return
+        }
         guard let highlightNote = Highlight.getById(withConfiguration: readerConfig, highlightId: highlightId) else { return }
         self.folioReader.readerCenter?.presentAddHighlightNote(highlightNote, edit: true)
     }
@@ -271,7 +275,7 @@ open class FolioReaderWebView: UIWebView {
 
         let highlightItem = UIMenuItem(title: self.readerConfig.localizedHighlightMenu, action: #selector(highlight(_:)))
         let highlightNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(highlightWithNote(_:)))
-        let editNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(updateHighlightNote(_:)))
+        let editNoteItem = UIMenuItem(title: "Edit Comment", action: #selector(updateHighlightNote(_:)))
         let playAudioItem = UIMenuItem(title: self.readerConfig.localizedPlayMenu, action: #selector(play(_:)))
         //let defineItem = UIMenuItem(title: self.readerConfig.localizedDefineMenu, action: #selector(define(_:)))
         let colorsItem = UIMenuItem(title: "Highlight") { [weak self] _ in
