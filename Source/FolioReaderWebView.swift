@@ -273,8 +273,8 @@ open class FolioReaderWebView: UIWebView {
         let highlightNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(highlightWithNote(_:)))
         let editNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(updateHighlightNote(_:)))
         let playAudioItem = UIMenuItem(title: self.readerConfig.localizedPlayMenu, action: #selector(play(_:)))
-        let defineItem = UIMenuItem(title: self.readerConfig.localizedDefineMenu, action: #selector(define(_:)))
-        let colorsItem = UIMenuItem(title: "C", image: colors) { [weak self] _ in
+        //let defineItem = UIMenuItem(title: self.readerConfig.localizedDefineMenu, action: #selector(define(_:)))
+        let colorsItem = UIMenuItem(title: "Highlight") { [weak self] _ in
             self?.colors(menuController)
         }
         let shareItem = UIMenuItem(title: "S", image: share) { [weak self] _ in
@@ -283,19 +283,19 @@ open class FolioReaderWebView: UIWebView {
         let removeItem = UIMenuItem(title: "R", image: remove) { [weak self] _ in
             self?.remove(menuController)
         }
-        let yellowItem = UIMenuItem(title: "Y", image: yellow) { [weak self] _ in
+        let yellowItem = UIMenuItem(title: "Beautiful") { [weak self] _ in
             self?.setYellow(menuController)
         }
-        let greenItem = UIMenuItem(title: "G", image: green) { [weak self] _ in
+        let greenItem = UIMenuItem(title: "Funny") { [weak self] _ in
             self?.setGreen(menuController)
         }
         let blueItem = UIMenuItem(title: "B", image: blue) { [weak self] _ in
             self?.setBlue(menuController)
         }
-        let pinkItem = UIMenuItem(title: "P", image: pink) { [weak self] _ in
+        let pinkItem = UIMenuItem(title: "Confusing") { [weak self] _ in
             self?.setPink(menuController)
         }
-        let underlineItem = UIMenuItem(title: "U", image: underline) { [weak self] _ in
+        let underlineItem = UIMenuItem(title: "Mistake") { [weak self] _ in
             self?.setUnderline(menuController)
         }
 
@@ -303,7 +303,7 @@ open class FolioReaderWebView: UIWebView {
 
         // menu on existing highlight
         if isShare {
-            menuItems = [colorsItem, editNoteItem, removeItem]
+            menuItems = [editNoteItem, removeItem]
             
             if (self.readerConfig.allowSharing == true) {
                 menuItems.append(shareItem)
@@ -312,10 +312,10 @@ open class FolioReaderWebView: UIWebView {
             isShare = false
         } else if isColors {
             // menu for selecting highlight color
-            menuItems = [yellowItem, greenItem, blueItem, pinkItem, underlineItem]
+            menuItems = [yellowItem, greenItem, pinkItem]
         } else {
             // default menu
-            menuItems = [highlightItem, defineItem, highlightNoteItem]
+            menuItems = [highlightNoteItem]
 
             if self.book.hasAudio || self.readerConfig.enableTTS {
                 menuItems.insert(playAudioItem, at: 0)

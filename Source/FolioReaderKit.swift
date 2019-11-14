@@ -87,6 +87,11 @@ public enum MediaOverlayStyle: Int {
     /// - Parameter folioReader: The FolioReader instance
     @objc optional func folioReaderDidClose(_ folioReader: FolioReader)
     
+    /// Called when reader did save a highlight.
+    ///
+    /// - Parameter folioReader: The FolioReader instance
+    @objc optional func folioReaderDidSaveHighlight(_ folioReader: FolioReader, highlight: Highlight)
+    
     /// Called when reader did close due to in-book link
     ///
     /// - Parameter folioReader: The FolioReader instance

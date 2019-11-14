@@ -176,6 +176,9 @@ class FolioReaderAddHighlightNote: UIViewController {
                 highlight.persist(withConfiguration: readerConfig)
                 highlightSaved = true
             }
+            NSLog("About to call folioReaderDidSaveHighlight")
+            folioReader.delegate?.folioReaderDidSaveHighlight?(folioReader, highlight: highlight)
+            NSLog("Called folioReaderDidSaveHighlight")
         }
         
         dismiss()

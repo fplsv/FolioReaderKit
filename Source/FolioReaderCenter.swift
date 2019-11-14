@@ -270,7 +270,8 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
         let menu = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action:#selector(closeReader(_:)))
         let toc = UIBarButtonItem(image: tocIcon, style: .plain, target: self, action:#selector(presentChapterList(_:)))
 
-        navigationItem.leftBarButtonItems = [menu]//, toc]
+        navigationItem.leftBarButtonItems = [menu]
+        //navigationItem.leftBarButtonItems = [menu, toc]
 
         var rightBarIcons = [UIBarButtonItem]()
 
@@ -1344,13 +1345,14 @@ open class FolioReaderCenter: UIViewController, UICollectionViewDelegate, UIColl
     @objc func presentChapterList(_ sender: UIBarButtonItem) {
         folioReader.saveReaderState()
 
-        let chapter = FolioReaderChapterList(folioReader: folioReader, readerConfig: readerConfig, book: book, delegate: self)
+        //let chapter = FolioReaderChapterList(folioReader: folioReader, readerConfig: readerConfig, book: book, delegate: self)
         let highlight = FolioReaderHighlightList(folioReader: folioReader, readerConfig: readerConfig)
         let pageController = PageViewController(folioReader: folioReader, readerConfig: readerConfig)
 
-        pageController.viewControllerOne = chapter
-        pageController.viewControllerTwo = highlight
-        pageController.segmentedControlItems = [readerConfig.localizedContentsTitle, readerConfig.localizedHighlightsTitle]
+        //pageController.viewControllerOne = chapter
+        //pageController.viewControllerTwo = highlight
+        pageController.viewControllerOne = highlight
+        pageController.segmentedControlItems = [readerConfig.localizedHighlightsTitle]
 
         let nav = UINavigationController(rootViewController: pageController)
         present(nav, animated: true, completion: nil)
