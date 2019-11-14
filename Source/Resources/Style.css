@@ -75,15 +75,23 @@ ol ol, ol ul, ul ol, ul ul {
     margin-top: 0 !important;
 }
 
+/* Backwards compatibility, re-enables highlighting */
+* {
+  -webkit-touch-callout: default!important;
+  -webkit-user-select: default!important;
+  -webkit-tap-highlight-color: auto!important;
+}
+
 /* Links */
-a { -webkit-touch-callout: none; } /* Disable link callback */
-* { -webkit-user-select: text; }
-img { -webkit-user-select: none; }
+a { -webkit-touch-callout: none!important; } /* Disable link callback */
+* { -webkit-user-select: text!important; }
+img { -webkit-user-select: none!important; }
 p {
     margin: 1.3em 0 1.5em 0;
     line-height: 1.40em !important;
     text-indent: 1.25em;
 }
+
 
 b, strong, th {font-weight: bolder !important;}
 
