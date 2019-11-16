@@ -230,6 +230,7 @@ extension Highlight {
         var id: String
         var startOffset: String
         var endOffset: String
+        var startParagraphIndex: String
         var bookId: String
         var currentPage: Int
     }
@@ -262,7 +263,8 @@ extension Highlight {
             highlight.bookId = matchingHighlight.bookId
             highlight.startOffset = (Int(matchingHighlight.startOffset) ?? -1)
             highlight.endOffset = (Int(matchingHighlight.endOffset) ?? -1)
-
+            highlight.startParagraphIndex = (Int(matchingHighlight.startParagraphIndex) ?? -1)
+            
             return highlight
         }
 

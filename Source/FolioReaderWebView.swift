@@ -145,6 +145,9 @@ open class FolioReaderWebView: UIWebView {
             guard let endOffset = dic["endOffset"] else {
                 return
             }
+            guard let startParagraphIndex = dic["startParagraphIndex"] else {
+                return
+            }
 
             createMenu(options: true)
             setMenuVisible(true, andRect: rect)
@@ -158,7 +161,7 @@ open class FolioReaderWebView: UIWebView {
             }
 
             let pageNumber = folioReader.readerCenter?.currentPageNumber ?? 0
-            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, bookId: bookId, currentPage: pageNumber)
+            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, startParagraphIndex: startParagraphIndex, bookId: bookId, currentPage: pageNumber)
             let highlight = Highlight.matchHighlight(match)
             highlight?.persist(withConfiguration: self.readerConfig)
 
@@ -176,6 +179,7 @@ open class FolioReaderWebView: UIWebView {
             let dic = json.firstObject as! [String: String]
             guard let startOffset = dic["startOffset"] else { return }
             guard let endOffset = dic["endOffset"] else { return }
+            guard let startParagraphIndex = dic["startParagraphIndex"] else { return }
             
             self.clearTextSelection()
             
@@ -184,7 +188,7 @@ open class FolioReaderWebView: UIWebView {
             guard let bookId = (self.book.name as NSString?)?.deletingPathExtension else { return }
             
             let pageNumber = folioReader.readerCenter?.currentPageNumber ?? 0
-            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, bookId: bookId, currentPage: pageNumber)
+            let match = Highlight.MatchingHighlight(text: html, id: identifier, startOffset: startOffset, endOffset: endOffset, startParagraphIndex: startParagraphIndex, bookId: bookId, currentPage: pageNumber)
             if let highlight = Highlight.matchHighlight(match) {
                 self.folioReader.readerCenter?.presentAddHighlightNote(highlight, edit: false)
             }
@@ -275,7 +279,7 @@ open class FolioReaderWebView: UIWebView {
 
         let highlightItem = UIMenuItem(title: self.readerConfig.localizedHighlightMenu, action: #selector(highlight(_:)))
         let highlightNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(highlightWithNote(_:)))
-        let editNoteItem = UIMenuItem(title: "Edit Comment", action: #selector(updateHighlightNote(_:)))
+        let editNoteItem = UIMenuItem(title: self.readerConfig.localizedHighlightNote, action: #selector(updateHighlightNote(_:)))
         let playAudioItem = UIMenuItem(title: self.readerConfig.localizedPlayMenu, action: #selector(play(_:)))
         //let defineItem = UIMenuItem(title: self.readerConfig.localizedDefineMenu, action: #selector(define(_:)))
         let colorsItem = UIMenuItem(title: "Highlight") { [weak self] _ in

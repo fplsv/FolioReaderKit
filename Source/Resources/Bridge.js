@@ -87,10 +87,21 @@ function setFontSize(cls) {
 /*
  *	Native bridge Highlight text
  */
-function highlightString(style) {
-    var range = window.getSelection().getRangeAt(0);
+function highlightString(style, failsafe=false) {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
     var startOffset = range.startOffset;
     var endOffset = range.endOffset;
+    var startParagraphIndex = getPIndex(range.startContainer);
+    var endParagraphIndex = getPIndex(range.endContainer);
+    
+    // Do not allow highighting over multiple paragraphs, it breaks things
+    if (startParagraphIndex !== endParagraphIndex && !failsafe) {
+        selection.collapseToStart();
+        selection.modify('extend', 'forward', 'paragraphboundary');
+        return highlightString(style, true);
+    }
+    
     var selectionContents = range.extractContents();
     var elm = document.createElement("highlight");
     var id = guid();
@@ -104,15 +115,34 @@ function highlightString(style) {
     thisHighlight = elm;
     
     var params = [];
-    params.push({id: id, rect: getRectForSelectedText(elm), startOffset: startOffset.toString(), endOffset: endOffset.toString()});
+    params.push({id: id, rect: getRectForSelectedText(elm), startOffset: startOffset.toString(), endOffset: endOffset.toString(), startParagraphIndex: startParagraphIndex.toString()});
     
     return JSON.stringify(params);
 }
 
-function highlightStringWithNote(style) {
-    var range = window.getSelection().getRangeAt(0);
+function getPIndex(element) {
+    var p = element;
+    while (p.nodeName !== "P" && p.nodeName !== "H1")
+        p = p.parentNode;
+
+    return Array.from(p.parentNode.children).indexOf(p);
+}
+
+function highlightStringWithNote(style, failsafe=false) {
+    var selection = window.getSelection();
+    var range = selection.getRangeAt(0);
     var startOffset = range.startOffset;
     var endOffset = range.endOffset;
+    var startParagraphIndex = getPIndex(range.startContainer);
+    var endParagraphIndex = getPIndex(range.endContainer);
+    
+    // Do not allow highighting over multiple paragraphs, it breaks things
+    if (startParagraphIndex !== endParagraphIndex && !failsafe) {
+        selection.collapseToStart();
+        selection.modify('extend', 'forward', 'paragraphboundary');
+        return highlightString(style, true);
+    }
+    
     var selectionContents = range.extractContents();
     var elm = document.createElement("highlight");
     var id = guid();
@@ -126,7 +156,7 @@ function highlightStringWithNote(style) {
     thisHighlight = elm;
     
     var params = [];
-    params.push({id: id, rect: getRectForSelectedText(elm), startOffset: startOffset.toString(), endOffset: endOffset.toString()});
+    params.push({id: id, rect: getRectForSelectedText(elm), startOffset: startOffset.toString(), endOffset: endOffset.toString(), startParagraphIndex: startParagraphIndex.toString()});
     
     return JSON.stringify(params);
 }
