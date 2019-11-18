@@ -116,6 +116,7 @@ class FolioReaderAddHighlightNote: UIViewController {
         highlightLabel = UILabel()
         highlightLabel.translatesAutoresizingMaskIntoConstraints = false
         highlightLabel.numberOfLines = 3
+        highlightLabel.textColor = .black
         highlightLabel.font = UIFont.systemFont(ofSize: 15)
         highlightLabel.text = highlight.content.stripHtml().truncate(250, trailing: "...").stripLineBreaks()
         
@@ -176,9 +177,7 @@ class FolioReaderAddHighlightNote: UIViewController {
                 highlight.persist(withConfiguration: readerConfig)
                 highlightSaved = true
             }
-            NSLog("About to call folioReaderDidSaveHighlight")
             folioReader.delegate?.folioReaderDidSaveHighlight?(folioReader, highlight: highlight)
-            NSLog("Called folioReaderDidSaveHighlight")
         }
         
         dismiss()

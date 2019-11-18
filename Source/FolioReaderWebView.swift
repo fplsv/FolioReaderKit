@@ -126,6 +126,10 @@ open class FolioReaderWebView: UIWebView {
     func remove(_ sender: UIMenuController?) {
         if let removedId = js("removeThisHighlight()") {
             Highlight.removeById(withConfiguration: self.readerConfig, highlightId: removedId)
+            let highlight = Highlight()
+            highlight.content = ""
+            highlight.highlightId = removedId;
+            folioReader.delegate?.folioReaderDidSaveHighlight?(folioReader, highlight: highlight)
         }
         setMenuVisible(false)
         createMenu(options: false)
