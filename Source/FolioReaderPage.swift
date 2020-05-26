@@ -303,7 +303,11 @@ open class FolioReaderPage: UICollectionViewCell, UIWebViewDelegate, UIGestureRe
             folioReader.readerCenter?.dismiss()
             folioReader.closeViaInBookLink()
             return false
-        } else if url.absoluteString != "about:blank" && scheme.contains("http") && navigationType == .linkClicked {
+        } else if url.absoluteString == "folioreader://share" && navigationType == .linkClicked {
+            folioReader.openShare()
+            return false
+        }
+        else if url.absoluteString != "about:blank" && scheme.contains("http") && navigationType == .linkClicked {
             let safariVC = SFSafariViewController(url: request.url!)
             safariVC.view.tintColor = self.readerConfig.tintColor
             self.folioReader.readerCenter?.present(safariVC, animated: true, completion: nil)

@@ -97,6 +97,11 @@ public enum MediaOverlayStyle: Int {
     /// - Parameter folioReader: The FolioReader instance
     @objc optional func folioReaderDidCloseViaInBookLink(_ folioReader: FolioReader)
     
+    /// Called when reader opened share
+   ///
+   /// - Parameter folioReader: The FolioReader instance
+   @objc optional func folioReaderOpenShare(_ folioReader: FolioReader)
+    
     /// Called when reader did closed.
     @available(*, deprecated, message: "Use 'folioReaderDidClose(_ folioReader: FolioReader)' instead.")
     @objc optional func folioReaderDidClosed()
@@ -383,5 +388,11 @@ extension FolioReader {
         self.readerAudioPlayer?.stop(immediate: true)
         self.defaults.set(0, forKey: kCurrentTOCMenu)
         self.delegate?.folioReaderDidCloseViaInBookLink?(self)
+    }
+    
+    /// Closes and save the reader current instance.
+    @objc
+    open func openShare() {
+        self.delegate?.folioReaderOpenShare?(self)
     }
 }
