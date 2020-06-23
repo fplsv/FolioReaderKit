@@ -139,7 +139,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
 
 
         // Media overlay highlight styles
-        let style0 = UIButton(frame: CGRect(x: 0, y: line2.frame.height+line2.frame.origin.y, width: view.frame.width/3, height: 55))
+        /*let style0 = UIButton(frame: CGRect(x: 0, y: line2.frame.height+line2.frame.origin.y, width: view.frame.width/3, height: 55))
         style0.titleLabel!.textAlignment = .center
         style0.titleLabel!.font = UIFont(name: "Avenir-Light", size: 17)
         style0.setTitleColor(self.folioReader.isNight(self.readerConfig.nightModeMenuBackground, UIColor.white), for: UIControl.State())
@@ -205,7 +205,7 @@ class FolioReaderPlayerMenu: UIViewController, SMSegmentViewDelegate, UIGestureR
         // store ref to buttons
         styleOptionBtns.append(style0)
         styleOptionBtns.append(style1)
-        styleOptionBtns.append(style2)
+        styleOptionBtns.append(style2)*/
     }
 
 

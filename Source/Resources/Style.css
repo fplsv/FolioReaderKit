@@ -257,13 +257,20 @@ html.nightMode .highlight-underline {border-bottom: 2px solid rgba(240, 40, 20, 
 html.textSizeOne, .textSizeOne body { font-size: 13px !important; }
 html.textSizeTwo, .textSizeTwo body { font-size: 15px !important; }
 html.textSizeThree, .textSizeThree body { font-size: 17px !important; }
-html.textSizeFour, .textSizeFour body { font-size: 19px !important; }
-html.textSizeFive, .textSizeFive body { font-size: 21px !important; }
+html.textSizeFour, .textSizeFour body { font-size: 24px !important; }
+html.textSizeFive, .textSizeFive body { font-size: 36px !important; }
 
 h1 {
     font-size: 2em;
     line-height: 1.2;
 }
+
+html.textSizeOne, .textSizeOne h1 { font-size: 15px !important; }
+html.textSizeTwo, .textSizeTwo h1 { font-size: 17px !important; }
+html.textSizeThree, .textSizeThree h1 { font-size: 19px !important; }
+html.textSizeFour, .textSizeFour h1 { font-size: 28px !important; }
+html.textSizeFive, .textSizeFive h1 { font-size: 40px !important; }
+
 h2 {
     font-size: 1.5em;
     line-height: 1.2;
